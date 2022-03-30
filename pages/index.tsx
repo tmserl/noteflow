@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css';
+import supabase from '../utils/supabaseClient';
 import NoteFlow from '../src/components/NoteFlow';
 
 function Home() {
