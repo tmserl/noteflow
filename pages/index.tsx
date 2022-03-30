@@ -1,3 +1,4 @@
+import styles from '../styles/Home.module.css';
 import NoteFlow from '../src/components/NoteFlow';
 
 function Home() {

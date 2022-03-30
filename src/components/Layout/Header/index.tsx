@@ -1,12 +1,12 @@
 function Header() {
   return (
-    <header>
+    <header className="header">
       <h1>
         <span className="underline">NoteFlow</span>
       </h1>
       <ul className="date-time">
-        <li id="current-date"></li>
-        <li id="current-time"></li>
+        <li id="current-date">Wednesday, 30 March 2022</li>
+        <li id="current-time">18:18</li>
       </ul>
     </header>
   );
