@@ -1,5 +1,5 @@
-import NoteDate from '../NoteDate';
-import NoteCard from '../NoteCard';
+import NoteDate from './NoteDate';
+import NoteCard from './NoteCard';
 
 function NotesStream() {
   return (
