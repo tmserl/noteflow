@@ -1,5 +1,13 @@
+import NoteFlow from '../src/components/NoteFlow';
+
 function Home() {
-  return <section>Main</section>;
+  return (
+    <div className="wrapper">
+      <section className="noteflow">
+        <NoteFlow />
+      </section>
+    </div>
+  );
 }
 
 export default Home;
