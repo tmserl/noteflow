@@ -1,15 +1,20 @@
-import NoteDate from './NoteDate';
 import NoteCard from './NoteCard';
 
-function NotesStream() {
+function NotesStream({ notesData }: { notesData: any }) {
   return (
     <div className="notes-stream column">
-      <NoteDate date="Today" />
-      <NoteCard content="This is another note after that!." time="16:16" />
-      <NoteCard content="This is another note after that!." time="16:16" />
-      <NoteDate date="Yesterday" />
-      <NoteCard content="This is my first note." time="16:15" />
-      <NoteCard content="This is my first note." time="16:15" />
+      {notesData && (
+        <>
+          {notesData.map((note: any) => (
+            <NoteCard
+              key={note.id}
+              content={note.note_content}
+              time={note.created_at}
+            />
+          ))}
+        </>
+      )}
+      {/* <NoteDate date="Today" />*/}
     </div>
   );
 }
