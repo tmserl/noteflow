@@ -3,6 +3,8 @@ import supabase from '../../../utils/supabaseClient';
 import NoteCreator from './NoteCreator';
 import NotesStream from './NoteStream';
 
+// FIXME: Statically type notesData state
+
 function NoteFlow() {
   const [createNoteBtnToggle, setCreateNoteBtnToggle] =
     useState<boolean>(false);
