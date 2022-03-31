@@ -1,10 +1,14 @@
-function NoteCreator() {
+import React, { MouseEventHandler } from 'react';
+
+function NoteCreator({
+  createNoteBtnToggler,
+}: {
+  createNoteBtnToggler: React.MouseEventHandler;
+}) {
   return (
     <div className="note-card note-card__center">
-      <form>
-        <textarea placeholder="Write your note"></textarea>
-        <button>Create note</button>
-      </form>
+      <textarea placeholder="Write your note"></textarea>
+      <button onClick={createNoteBtnToggler}>Create note</button>
     </div>
   );
 }
