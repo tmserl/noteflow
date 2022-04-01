@@ -63,7 +63,6 @@ header {
 h1 {
   font-size: 2.5rem;
   font-weight: 900;
-  float: left;
 }
 
 h1 a {
@@ -71,14 +70,47 @@ h1 a {
   color: inherit;
 }
 
-.date-time {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header--user {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+}
+
+.header--date-time {
+  padding: 0;
   font-size: 1.2rem;
-  float: right;
   text-align: right;
 }
 
-.date-time li {
+.header--date-time li {
   list-style: none;
+}
+
+.header--user-icon {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  background: var(--medium-gray);
+  border-radius: 50%;
+}
+
+.header--user-login {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  top: 50px;
+  right: 35px;
+}
+
+.header--user-login p {
+  font-size: 1.2rem;
 }
 
 .notes-date {
