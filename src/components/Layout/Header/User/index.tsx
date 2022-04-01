@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 function User() {
   const [isAvatarClicked, setIsAvatarClicked] = useState<boolean>(false);
@@ -17,8 +18,8 @@ function User() {
       <div onClick={handleAvatarClick} className="header--user-icon"></div>
       {isAvatarClicked && (
         <div className="header--user-login">
-          <p>Login</p>
-          <p>Logout</p>
+          <Link href="/login">Login</Link>
+          <Link href="/logout">Logout</Link>
         </div>
       )}
     </>

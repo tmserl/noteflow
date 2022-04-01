@@ -58,6 +58,7 @@ header {
   margin-right: auto;
   margin-left: auto;
   max-width: 1200px;
+  padding-bottom: 30px;
 }
 
 h1 {
@@ -109,8 +110,11 @@ h1 a {
   right: 35px;
 }
 
-.header--user-login p {
+.header--user-login a {
+  margin-right: 10px;
   font-size: 1.2rem;
+  text-decoration: none;
+  color: inherit;
 }
 
 .notes-date {
