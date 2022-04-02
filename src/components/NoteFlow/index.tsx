@@ -4,15 +4,25 @@ import NoteCreator from './NoteCreator';
 import NotesStream from './NoteStream';
 
 // FIXME: Statically type notesData state
+// FIXME: Statically type event parameter
 
 function NoteFlow() {
+  // 'Create note' Button
   const [createNoteBtnToggle, setCreateNoteBtnToggle] =
     useState<boolean>(false);
 
-  function createNoteBtnToggler() {
+  function handleCreateNoteBtn() {
     setCreateNoteBtnToggle(!createNoteBtnToggle);
   }
 
+  // New note text input
+  const [noteCreatorContent, setNoteCreatorContent] = useState<string>('');
+
+  function handleNoteCreatorInput(e: any) {
+    setNoteCreatorContent(e.target.value);
+  }
+
+  // Notes data from Supabase
   const [notesData, setNotesData] = useState<any>();
 
   useEffect(() => {
@@ -28,7 +38,10 @@ function NoteFlow() {
 
   return (
     <div className="column timeline-line">
-      <NoteCreator createNoteBtnToggler={createNoteBtnToggler} />
+      <NoteCreator
+        handleNoteCreatorInput={handleNoteCreatorInput}
+        createNoteBtnToggler={handleCreateNoteBtn}
+      />
       <NotesStream notesData={notesData} />
     </div>
   );
