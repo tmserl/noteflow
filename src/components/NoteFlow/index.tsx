@@ -20,17 +20,21 @@ function NoteFlow() {
   }
 
   // New note text input
-  const [noteCreatorContent, setNoteCreatorContent] = useState<string>('');
+  const [noteCreateInputValue, setNoteCreatorInputValue] = useState<string>('');
 
   function handleNoteCreatorInput(e: any) {
-    setNoteCreatorContent(e.target.value);
+    setNoteCreatorInputValue(e.target.value);
+  }
+
+  function resetNoteCreatorInputField() {
+    setNoteCreatorInputValue('');
   }
 
   // Notes data from Supabase
   const [notesData, setNotesData] = useState<any>();
 
   // Fetch all notes
-  async function fetchNotes() {
+  async function fetchAllNotes() {
     const { data: notes } = await supabase
       .from('notes')
       .select('*')
@@ -40,7 +44,7 @@ function NoteFlow() {
 
   // Fetch notes on page mount
   useEffect(() => {
-    fetchNotes();
+    fetchAllNotes();
   }, []);
 
   // Create new note
@@ -48,19 +52,21 @@ function NoteFlow() {
     async function newNote() {
       const { data, error } = await supabase
         .from('notes')
-        .insert([{ note_content: noteCreatorContent, user_id: user.id }]);
+        .insert([{ note_content: noteCreateInputValue, user_id: user.id }]);
     }
     if (user) {
-      if (noteCreatorContent.length >= 1) {
+      if (noteCreateInputValue.length >= 1) {
         newNote();
+        fetchAllNotes();
+        resetNoteCreatorInputField();
       }
     }
-    fetchNotes();
   }, [createNoteBtnToggle]);
 
   return (
     <div className="column timeline-line">
       <NoteCreator
+        noteCreateInputValue={noteCreateInputValue}
         handleNoteCreatorInput={handleNoteCreatorInput}
         createNoteBtnToggler={handleCreateNoteBtn}
       />
