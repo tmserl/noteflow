@@ -63,6 +63,12 @@ function NoteFlow() {
     }
   }, [createNoteBtnToggle]);
 
+  // Delete note
+  async function deleteNote(id: number) {
+    const { data, error } = await supabase.from('notes').delete().eq('id', id);
+    fetchAllNotes();
+  }
+
   return (
     <div className="column timeline-line">
       <NoteCreator
@@ -70,7 +76,7 @@ function NoteFlow() {
         handleNoteCreatorInput={handleNoteCreatorInput}
         createNoteBtnToggler={handleCreateNoteBtn}
       />
-      <NotesStream notesData={notesData} />
+      <NotesStream notesData={notesData} deleteNote={deleteNote} />
     </div>
   );
 }
