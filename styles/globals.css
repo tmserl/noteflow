@@ -210,11 +210,16 @@ h1 a {
 }
 
 .note-card--delete {
+  visibility: hidden;
   cursor: pointer;
   position: absolute;
   bottom: -20px;
   right: 0;
   color: var(--medium-gray);
+}
+
+.note-card:hover > .note-card--delete {
+  visibility: visible;
 }
 
 .note-card__alternate:nth-child(odd) .note-card--time__alternate {
