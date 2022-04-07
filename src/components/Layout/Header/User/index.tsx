@@ -15,7 +15,9 @@ function User() {
 
   return (
     <>
-      <div onClick={handleAvatarClick} className="header--user-icon"></div>
+      <div onClick={handleAvatarClick} className="header--user-icon">
+        <p className="header--user-initials">TE</p>
+      </div>
       {isAvatarClicked && (
         <div className="header--user-login">
           <Link href="/login">Login</Link>

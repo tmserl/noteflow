@@ -96,10 +96,19 @@ h1 a {
 
 .header--user-icon {
   cursor: pointer;
+  text-align: center;
   width: 35px;
   height: 35px;
   background: var(--medium-gray);
   border-radius: 50%;
+}
+
+.header--user-initials {
+  position: relative;
+  font-size: 12px;
+  line-height: 12px;
+  top: 0px;
+  font-weight: 600;
 }
 
 .header--user-login {
