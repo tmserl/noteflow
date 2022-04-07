@@ -70,7 +70,7 @@ function NoteFlow() {
 
   // Realtime subscription to all events
   useEffect(() => {
-    subscription = supabase
+    const subscription = supabase
       .from('notes')
       .on('*', (payload) => {
         console.log(payload);
