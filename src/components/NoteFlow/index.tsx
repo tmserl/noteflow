@@ -57,7 +57,6 @@ function NoteFlow() {
     if (user) {
       if (noteCreateInputValue.length >= 1) {
         newNote();
-        fetchAllNotes();
         resetNoteCreatorInputField();
       }
     }
@@ -68,6 +67,16 @@ function NoteFlow() {
     const { data, error } = await supabase.from('notes').delete().eq('id', id);
     fetchAllNotes();
   }
+
+  // Realtime subscription to all events
+  useEffect(() => {
+    subscription = supabase
+      .from('notes')
+      .on('*', (payload) => {
+        console.log(payload);
+      })
+      .subscribe();
+  }, []);
 
   return (
     <div className="column timeline-line">
