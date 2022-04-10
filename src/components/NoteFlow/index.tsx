@@ -48,17 +48,17 @@ function NoteFlow() {
   }, []);
 
   // Create new note
+  async function newNote() {
+    const { data, error } = await supabase
+      .from('notes')
+      .insert([{ note_content: noteCreateInputValue, user_id: user.id }]);
+  }
+
+  // Create note on button click
   useEffect(() => {
-    async function newNote() {
-      const { data, error } = await supabase
-        .from('notes')
-        .insert([{ note_content: noteCreateInputValue, user_id: user.id }]);
-    }
-    if (user) {
-      if (noteCreateInputValue.length >= 1) {
-        newNote();
-        resetNoteCreatorInputField();
-      }
+    if (user === true && noteCreateInputValue.length >= 1) {
+      newNote();
+      resetNoteCreatorInputField();
     }
   }, [createNoteBtnToggle]);
 
