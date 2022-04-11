@@ -6,6 +6,7 @@ import NotesStream from './NoteStream';
 // FIXME: Statically type notesData state
 // FIXME: Statically type event parameter
 // FIXME: Statically type user object
+// FIXME: Statically type realtimeSubscription state
 // TODO: Refactor code for fetching all notes and creating new notes
 
 function NoteFlow() {
@@ -53,10 +54,9 @@ function NoteFlow() {
       .from('notes')
       .insert([{ note_content: noteCreateInputValue, user_id: user.id }]);
   }
-
   // Create note on button click
   useEffect(() => {
-    if (user === true && noteCreateInputValue.length >= 1) {
+    if (user && noteCreateInputValue.length >= 1) {
       newNote();
       resetNoteCreatorInputField();
     }
@@ -68,15 +68,25 @@ function NoteFlow() {
     fetchAllNotes();
   }
 
-  // Realtime subscription to all events
+  // Setup realtime subscription to all events
+  const [realtimeSubscription, setRealtimeSubscription] = useState<any>();
+
   useEffect(() => {
     const subscription = supabase
       .from('notes')
       .on('*', (payload) => {
-        console.log(payload);
+        setRealtimeSubscription(payload);
       })
       .subscribe();
   }, []);
+
+  // New notes content added to notesData
+  useEffect(() => {
+    if (realtimeSubscription) {
+      // Need to immutably add to notesData state in the shape of:
+      // {id:##, note_content:"", user_id:"", created_at: "2022-04-11-t14...."}
+    }
+  }, [realtimeSubscription]);
 
   return (
     <div className="column timeline-line">
