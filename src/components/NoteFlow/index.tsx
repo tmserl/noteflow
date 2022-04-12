@@ -7,7 +7,7 @@ import NotesStream from './NoteStream';
 // FIXME: Statically type event parameter
 // FIXME: Statically type user object
 // FIXME: Statically type realtimeSubscription state
-// TODO: Refactor code for fetching all notes and creating new notes
+// TODO: Cleanup subscription after idle: supabase.removeSubscription(mySubscription)
 
 function NoteFlow() {
   const user: any = supabase.auth.user();
@@ -83,7 +83,6 @@ function NoteFlow() {
   // New notes content added to notesData
   useEffect(() => {
     if (realtimeSubscription) {
-      // Need to add other items to the object including id (for the map key) and user auth id
       setNotesData([
         {
           id: realtimeSubscription.new.id,
@@ -96,7 +95,6 @@ function NoteFlow() {
     }
   }, [realtimeSubscription]);
 
-  console.log(notesData);
   return (
     <div className="column timeline-line">
       <NoteCreator
