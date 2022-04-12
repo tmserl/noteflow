@@ -74,7 +74,7 @@ function NoteFlow() {
   useEffect(() => {
     const subscription = supabase
       .from('notes')
-      .on('*', (payload) => {
+      .on('INSERT', (payload) => {
         setRealtimeSubscription(payload);
       })
       .subscribe();
@@ -86,7 +86,9 @@ function NoteFlow() {
       // Need to add other items to the object including id (for the map key) and user auth id
       setNotesData([
         {
+          id: realtimeSubscription.new.id,
           note_content: realtimeSubscription.new.note_content,
+          user_id: realtimeSubscription.new.user_id,
           created_at: realtimeSubscription.new.created_at,
         },
         ...notesData,
@@ -94,6 +96,7 @@ function NoteFlow() {
     }
   }, [realtimeSubscription]);
 
+  console.log(notesData);
   return (
     <div className="column timeline-line">
       <NoteCreator
