@@ -6,7 +6,8 @@ import NotesStream from './NoteStream';
 // FIXME: Statically type notesData state
 // FIXME: Statically type event parameter
 // FIXME: Statically type user object
-// TODO: Refactor code for fetching all notes and creating new notes
+// FIXME: Statically type realtimeSubscription state
+// TODO: Cleanup subscription after idle: supabase.removeSubscription(mySubscription)
 
 function NoteFlow() {
   const user: any = supabase.auth.user();
@@ -48,17 +49,16 @@ function NoteFlow() {
   }, []);
 
   // Create new note
+  async function newNote() {
+    const { data, error } = await supabase
+      .from('notes')
+      .insert([{ note_content: noteCreateInputValue, user_id: user.id }]);
+  }
+  // Create note on button click
   useEffect(() => {
-    async function newNote() {
-      const { data, error } = await supabase
-        .from('notes')
-        .insert([{ note_content: noteCreateInputValue, user_id: user.id }]);
-    }
-    if (user) {
-      if (noteCreateInputValue.length >= 1) {
-        newNote();
-        resetNoteCreatorInputField();
-      }
+    if (user && noteCreateInputValue.length >= 1) {
+      newNote();
+      resetNoteCreatorInputField();
     }
   }, [createNoteBtnToggle]);
 
@@ -68,15 +68,32 @@ function NoteFlow() {
     fetchAllNotes();
   }
 
-  // Realtime subscription to all events
+  // Setup realtime subscription to all events
+  const [realtimeSubscription, setRealtimeSubscription] = useState<any>();
+
   useEffect(() => {
     const subscription = supabase
       .from('notes')
-      .on('*', (payload) => {
-        console.log(payload);
+      .on('INSERT', (payload) => {
+        setRealtimeSubscription(payload);
       })
       .subscribe();
   }, []);
+
+  // New notes content added to notesData
+  useEffect(() => {
+    if (realtimeSubscription) {
+      setNotesData([
+        {
+          id: realtimeSubscription.new.id,
+          note_content: realtimeSubscription.new.note_content,
+          user_id: realtimeSubscription.new.user_id,
+          created_at: realtimeSubscription.new.created_at,
+        },
+        ...notesData,
+      ]);
+    }
+  }, [realtimeSubscription]);
 
   return (
     <div className="column timeline-line">
