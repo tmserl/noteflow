@@ -83,8 +83,14 @@ function NoteFlow() {
   // New notes content added to notesData
   useEffect(() => {
     if (realtimeSubscription) {
-      // Need to immutably add to notesData state in the shape of:
-      // {id:##, note_content:"", user_id:"", created_at: "2022-04-11-t14...."}
+      // Need to add other items to the object including id (for the map key) and user auth id
+      setNotesData([
+        {
+          note_content: realtimeSubscription.new.note_content,
+          created_at: realtimeSubscription.new.created_at,
+        },
+        ...notesData,
+      ]);
     }
   }, [realtimeSubscription]);
 
