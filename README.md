@@ -12,7 +12,13 @@ I enjoy taking notes. Most of the time these notes end up in my anologue noteboo
 
 ## The Solution
 
+NoteFlow shows your notes in a nice, clean, chronological order. Displayed on a timeline, it's easy to see when you made your notes
+
 ## Screenshots
+
+Early version of NoteFlow, demonstrating the timeline layout.
+![NoteFlow](/README/img/noteflow_1.png)
+![NoteFlow](/README/img/noteflow_2.png)
 
 ## Scripts
 
