@@ -1,5 +1,7 @@
 # NoteFlow
 
+README under construction!
+
 ## How it Started
 
 NoteFlow started as a personal project I worked on over the 2021 Christmas break. At the time, I had little knowledge of React, and so opted to code everything using vanilla JavaScript DOM manipulation.
@@ -16,7 +18,8 @@ NoteFlow shows your notes in a nice, clean, chronological order. Displayed on a 
 
 ## Screenshots
 
-Early version of NoteFlow, demonstrating the timeline layout.
+### Early version of NoteFlow, demonstrating the timeline layout.
+
 ![NoteFlow](/README/img/noteflow_1.png)
 ![NoteFlow](/README/img/noteflow_2.png)
 
@@ -30,5 +33,3 @@ To run the app locally on `localhost:3000`, use the following commands:
 npm install
 npm run dev
 ```
-
-README under construction!
