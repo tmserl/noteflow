@@ -76,7 +76,10 @@ function NoteFlow() {
     if (user && noteCreateInputValue.length >= 1) {
       newNote();
       resetNoteCreatorInputField();
-      fetchAllNotes();
+      const timer = setTimeout(() => {
+        fetchAllNotes();
+      }, 1000);
+      return () => clearTimeout(timer);
     }
   }, [createNoteBtnToggle]);
 
