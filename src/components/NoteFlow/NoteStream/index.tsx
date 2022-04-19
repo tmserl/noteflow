@@ -1,30 +1,37 @@
 import NoteCard from './NoteCard';
+import NoteDate from './NoteDate';
 
 // FIXME: Statically type props
 
 function NotesStream({
-  notesData,
+  sortedNotesData,
   deleteNote,
 }: {
-  notesData: any;
+  sortedNotesData: any;
   deleteNote: any;
 }) {
   return (
-    <div className="notes-stream column">
-      {notesData && (
+    <div className="notes-stream">
+      {sortedNotesData && (
         <>
-          {notesData.map((note: any) => (
-            <NoteCard
-              key={note.id}
-              id={note.id}
-              content={note.note_content}
-              time={note.created_at}
-              deleteNote={deleteNote}
-            />
+          {Object.entries(sortedNotesData).map(([noteDate, noteContent], i) => (
+            <>
+              <NoteDate key={i} noteDate={noteDate} />
+              <div className="column">
+                {noteContent.map((note: any) => (
+                  <NoteCard
+                    key={note.id}
+                    id={note.id}
+                    content={note.note_content}
+                    time={note.created_at}
+                    deleteNote={deleteNote}
+                  />
+                ))}
+              </div>
+            </>
           ))}
         </>
       )}
-      {/* <NoteDate date="Today" />*/}
     </div>
   );
 }
