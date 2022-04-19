@@ -1,3 +1,5 @@
+// FIXME: Statically type options object
+
 function NoteDate({ noteDate }: { noteDate: string }) {
   const options: any = {
     weekday: 'short',
