@@ -11,21 +11,23 @@ function NotesStream({
   deleteNote: any;
 }) {
   return (
-    <div className="notes-stream column">
+    <div className="notes-stream">
       {sortedNotesData && (
         <>
           {Object.entries(sortedNotesData).map(([noteDate, noteContent], i) => (
             <>
               <NoteDate key={i} noteDate={noteDate} />
-              {noteContent.map((note: any) => (
-                <NoteCard
-                  key={note.id}
-                  id={note.id}
-                  content={note.note_content}
-                  time={note.created_at}
-                  deleteNote={deleteNote}
-                />
-              ))}
+              <div className="column">
+                {noteContent.map((note: any) => (
+                  <NoteCard
+                    key={note.id}
+                    id={note.id}
+                    content={note.note_content}
+                    time={note.created_at}
+                    deleteNote={deleteNote}
+                  />
+                ))}
+              </div>
             </>
           ))}
         </>

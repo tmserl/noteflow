@@ -231,12 +231,6 @@ h1 a {
   visibility: visible;
 }
 
-.note-card__alternate:nth-child(odd) .note-card--time__alternate {
-  top: 40%;
-  right: 0;
-  transform: translateX(100%);
-}
-
 .note-card__alternate:nth-child(even) .note-card--time__alternate {
   top: 40%;
   left: 0;
