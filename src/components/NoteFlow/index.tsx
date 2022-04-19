@@ -32,7 +32,8 @@ function NoteFlow() {
   }
 
   // Notes data from Supabase
-  const [notesData, setNotesData] = useState<any>();
+  const [rawNotesData, setRawNotesData] = useState<any>();
+  const [sortedNotesData, setSortedNotesData] = useState<any>();
 
   // Fetch all notes
   async function fetchAllNotes() {
@@ -40,12 +41,30 @@ function NoteFlow() {
       .from('notes')
       .select('*')
       .order('created_at', { ascending: false });
-    setNotesData(notes);
+    setRawNotesData(notes);
   }
 
   // Fetch notes on page mount
   useEffect(() => {
     fetchAllNotes();
+
+    if (rawNotesData) {
+      const groupByDate = (notesDataToSort: any) => {
+        return notesDataToSort.reduce((groups: any, note: any) => {
+          const date = new Date(note.created_at).toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+          });
+          if (!groups.hasOwnProperty(date)) {
+            groups[date] = [];
+          }
+          groups[date].push(note);
+          return groups;
+        }, {});
+      };
+      setSortedNotesData(groupByDate(rawNotesData));
+    }
   }, []);
 
   // Create new note
@@ -81,19 +100,19 @@ function NoteFlow() {
   }, []);
 
   // New notes content added to notesData
-  useEffect(() => {
-    if (realtimeSubscription) {
-      setNotesData([
-        {
-          id: realtimeSubscription.new.id,
-          note_content: realtimeSubscription.new.note_content,
-          user_id: realtimeSubscription.new.user_id,
-          created_at: realtimeSubscription.new.created_at,
-        },
-        ...notesData,
-      ]);
-    }
-  }, [realtimeSubscription]);
+  // useEffect(() => {
+  //   if (realtimeSubscription) {
+  //     setNotesData([
+  //       {
+  //         id: realtimeSubscription.new.id,
+  //         note_content: realtimeSubscription.new.note_content,
+  //         user_id: realtimeSubscription.new.user_id,
+  //         created_at: realtimeSubscription.new.created_at,
+  //       },
+  //       ...notesData,
+  //     ]);
+  //   }
+  // }, [realtimeSubscription]);
 
   return (
     <div className="column timeline-line">
@@ -102,7 +121,7 @@ function NoteFlow() {
         handleNoteCreatorInput={handleNoteCreatorInput}
         createNoteBtnToggler={handleCreateNoteBtn}
       />
-      <NotesStream notesData={notesData} deleteNote={deleteNote} />
+      <NotesStream notesData={sortedNotesData} deleteNote={deleteNote} />
     </div>
   );
 }
