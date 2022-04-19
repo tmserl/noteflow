@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import supabase from '../../../utils/supabaseClient';
 import NoteCreator from './NoteCreator';
 import NotesStream from './NoteStream';
@@ -32,52 +33,50 @@ function NoteFlow() {
   }
 
   // Notes data from Supabase
-  const [rawNotesData, setRawNotesData] = useState<any>();
-  const [sortedNotesData, setSortedNotesData] = useState<any>();
+  const [notesData, setNotesData] = useState<any>();
 
-  // Fetch all notes
+  const groupByDate = (notesDataToSort: any) => {
+    return notesDataToSort.reduce((groups: any, note: any) => {
+      const date = new Date(note.created_at).toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+      });
+      if (!groups.hasOwnProperty(date)) {
+        groups[date] = [];
+      }
+      groups[date].push(note);
+      return groups;
+    }, {});
+  };
+
+  // Supabase: Fetch all notes
   async function fetchAllNotes() {
     const { data: notes } = await supabase
       .from('notes')
       .select('*')
       .order('created_at', { ascending: false });
-    setRawNotesData(notes);
+    setNotesData(groupByDate(notes));
   }
 
-  // Fetch notes on page mount
+  // Fetch notes and group by dates on page mount
   useEffect(() => {
     fetchAllNotes();
-
-    if (rawNotesData) {
-      const groupByDate = (notesDataToSort: any) => {
-        return notesDataToSort.reduce((groups: any, note: any) => {
-          const date = new Date(note.created_at).toLocaleDateString('en-GB', {
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
-          });
-          if (!groups.hasOwnProperty(date)) {
-            groups[date] = [];
-          }
-          groups[date].push(note);
-          return groups;
-        }, {});
-      };
-      setSortedNotesData(groupByDate(rawNotesData));
-    }
   }, []);
 
-  // Create new note
+  // Supabase: Create new note
   async function newNote() {
     const { data, error } = await supabase
       .from('notes')
       .insert([{ note_content: noteCreateInputValue, user_id: user.id }]);
   }
+
   // Create note on button click
   useEffect(() => {
     if (user && noteCreateInputValue.length >= 1) {
       newNote();
       resetNoteCreatorInputField();
+      fetchAllNotes();
     }
   }, [createNoteBtnToggle]);
 
@@ -87,33 +86,6 @@ function NoteFlow() {
     fetchAllNotes();
   }
 
-  // Setup realtime subscription to all events
-  const [realtimeSubscription, setRealtimeSubscription] = useState<any>();
-
-  useEffect(() => {
-    const subscription = supabase
-      .from('notes')
-      .on('INSERT', (payload) => {
-        setRealtimeSubscription(payload);
-      })
-      .subscribe();
-  }, []);
-
-  // New notes content added to notesData
-  // useEffect(() => {
-  //   if (realtimeSubscription) {
-  //     setNotesData([
-  //       {
-  //         id: realtimeSubscription.new.id,
-  //         note_content: realtimeSubscription.new.note_content,
-  //         user_id: realtimeSubscription.new.user_id,
-  //         created_at: realtimeSubscription.new.created_at,
-  //       },
-  //       ...notesData,
-  //     ]);
-  //   }
-  // }, [realtimeSubscription]);
-
   return (
     <div className="column timeline-line">
       <NoteCreator
@@ -121,7 +93,7 @@ function NoteFlow() {
         handleNoteCreatorInput={handleNoteCreatorInput}
         createNoteBtnToggler={handleCreateNoteBtn}
       />
-      <NotesStream notesData={sortedNotesData} deleteNote={deleteNote} />
+      <NotesStream sortedNotesData={notesData} deleteNote={deleteNote} />
     </div>
   );
 }
