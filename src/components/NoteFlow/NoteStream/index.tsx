@@ -14,10 +14,10 @@ function NotesStream({
     <div className="notes-stream column">
       {sortedNotesData && (
         <>
-          {Object.entries(sortedNotesData).map(([date, notes], i) => (
+          {Object.entries(sortedNotesData).map(([noteDate, noteContent], i) => (
             <>
-              <NoteDate key={i} date={date} />
-              {notes.map((note: any) => (
+              <NoteDate key={i} noteDate={noteDate} />
+              {noteContent.map((note: any) => (
                 <NoteCard
                   key={note.id}
                   id={note.id}

@@ -38,8 +38,9 @@ function NoteFlow() {
   const groupByDate = (notesDataToSort: any) => {
     return notesDataToSort.reduce((groups: any, note: any) => {
       const date = new Date(note.created_at).toLocaleDateString('en-GB', {
+        weekday: 'short',
         year: 'numeric',
-        month: 'numeric',
+        month: 'long',
         day: 'numeric',
       });
       if (!groups.hasOwnProperty(date)) {
