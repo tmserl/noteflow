@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import supabase from '../../../../../utils/supabaseClient';
 
@@ -38,9 +39,21 @@ function User() {
 
   return (
     <>
-      <div onClick={handleAvatarClick} className="header--user-icon">
-        <p className="header--user-initials">{userInitials}</p>
-      </div>
+      {user ? (
+        <div onClick={handleAvatarClick} className="header--user-icon">
+          <p className="header--user-initials">{userInitials}</p>
+        </div>
+      ) : (
+        <motion.div
+          animate={{ y: [0, -9, 0, -5, 0, -1, 0] }}
+          transition={{ delay: 2, repeat: Infinity, repeatDelay: 5 }}
+          onClick={handleAvatarClick}
+          className="header--user-icon"
+        >
+          <p className="header--user-initials">{userInitials}</p>
+        </motion.div>
+      )}
+
       {isAvatarClicked && (
         <div className="header--user-login">
           <Link href="/login">Login</Link>
