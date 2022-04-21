@@ -303,3 +303,31 @@ footer {
 }
 
 /* 9. METIA QUERIES */
+@media screen and (max-width: 1030px) {
+  .note-card__alternate:nth-child(odd) {
+    align-self: center;
+  }
+
+  .note-card__alternate:nth-child(even) {
+    align-self: center;
+  }
+
+  .note-card--time {
+    position: absolute;
+    width: 70px;
+    border-bottom: none;
+  }
+
+  .note-card--time__alternate {
+    transform: translateX(80%);
+  }
+
+  .note-card__alternate:nth-child(even) .note-card--time__alternate {
+    transform: translateX(-80%);
+  }
+
+  .note-card--time span {
+    background: transparent;
+    padding: 0;
+  }
+}
