@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import supabase from '../../../../../utils/supabaseClient';
 
@@ -37,6 +37,11 @@ function User() {
     }
   }, []);
 
+  const userVariants = {
+    unclicked: { x: '10vh', opacity: 0 },
+    clicked: { x: 0, opacity: 1 },
+  };
+
   return (
     <>
       {user ? (
@@ -53,15 +58,24 @@ function User() {
           <p className="header--user-initials">{userInitials}</p>
         </motion.div>
       )}
-
       {isAvatarClicked && (
-        <div className="header--user-login">
+        <motion.div
+          className="header--user-login"
+          variants={userVariants}
+          initial="unclicked"
+          animate="clicked"
+          exit="unclicked"
+        >
           {!user ? (
-            <Link href="/login">Login</Link>
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <Link href="/login">Login</Link>
+            </motion.div>
           ) : (
-            <Link href="/logout">Logout</Link>
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <Link href="/logout">Logout</Link>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       )}
     </>
   );
