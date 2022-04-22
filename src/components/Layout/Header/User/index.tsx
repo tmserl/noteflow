@@ -56,8 +56,11 @@ function User() {
 
       {isAvatarClicked && (
         <div className="header--user-login">
-          <Link href="/login">Login</Link>
-          <Link href="/logout">Logout</Link>
+          {!user ? (
+            <Link href="/login">Login</Link>
+          ) : (
+            <Link href="/logout">Logout</Link>
+          )}
         </div>
       )}
     </>
