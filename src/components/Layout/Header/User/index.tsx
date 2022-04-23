@@ -64,7 +64,6 @@ function User() {
           variants={userVariants}
           initial="unclicked"
           animate="clicked"
-          exit="unclicked"
         >
           {!user ? (
             <motion.div whileHover={{ scale: 1.05 }}>
