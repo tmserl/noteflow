@@ -1,6 +1,13 @@
 import User from './User';
 
 function Header() {
+  const today = new Date().toLocaleDateString('en-GB', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
     <header className="header">
       <div className="header--brand">
@@ -10,8 +17,7 @@ function Header() {
       </div>
       <div className="header--user">
         <ul className="header--date-time">
-          <li id="current-date">Wednesday, 30 March 2022</li>
-          <li id="current-time">18:18</li>
+          <li id="current-date">{today}</li>
         </ul>
         <User />
       </div>
