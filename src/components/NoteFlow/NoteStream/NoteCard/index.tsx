@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 // FIXME: Statically type deleteNote prop
 
 function NoteCard({
@@ -11,10 +12,20 @@ function NoteCard({
   time: string;
   deleteNote: any;
 }) {
+  const noteCardVarirants = {
+    hidden: { x: '-1vw', opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+
   const dateTime = new Date(time);
 
   return (
-    <div className="note-card note-card__alternate">
+    <motion.div
+      variants={noteCardVarirants}
+      initial="hidden"
+      animate="visible"
+      className="note-card note-card__alternate"
+    >
       <div className="note-card--content">
         <p>{content}</p>
       </div>
@@ -35,7 +46,7 @@ function NoteCard({
           Delete
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
