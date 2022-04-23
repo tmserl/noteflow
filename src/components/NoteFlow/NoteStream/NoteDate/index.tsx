@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 // FIXME: Statically type options object
 
 function NoteDate({ noteDate }: { noteDate: string }) {
@@ -6,6 +8,11 @@ function NoteDate({ noteDate }: { noteDate: string }) {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+  };
+
+  const noteDateVariants = {
+    hidden: { y: '-3vh', opacity: 0 },
+    visible: { y: 0, opacity: 1 },
   };
 
   // Gets today's date
@@ -20,13 +27,18 @@ function NoteDate({ noteDate }: { noteDate: string }) {
   );
 
   return (
-    <h2 className="notes-date">
+    <motion.h2
+      variants={noteDateVariants}
+      initial="hidden"
+      animate="visible"
+      className="notes-date"
+    >
       {noteDate === todaysDate
         ? 'Today'
         : noteDate === yesterdaysDate
         ? 'Yesterday'
         : noteDate}
-    </h2>
+    </motion.h2>
   );
 }
 

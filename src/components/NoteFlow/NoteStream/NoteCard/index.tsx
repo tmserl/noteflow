@@ -1,5 +1,4 @@
-import { notDeepStrictEqual } from 'assert';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 // FIXME: Statically type deleteNote prop
 
 function NoteCard({
