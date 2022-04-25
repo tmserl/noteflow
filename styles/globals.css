@@ -151,6 +151,10 @@ h1 a {
   background-position: center center;
 }
 
+.spacer {
+  height: 300px;
+}
+
 .note-card {
   width: 420px;
   height: auto;
