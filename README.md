@@ -23,6 +23,14 @@ NoteFlow shows your notes in a nice, clean, chronological order. Displayed on a 
 ![NoteFlow](/README/img/noteflow_1.png)
 ![NoteFlow](/README/img/noteflow_2.png)
 
+### Demonstrating date separation throughout the timeline
+
+![NoteFlow](/README/img/noteflow_3.png)
+
+### NoteFlow on small devices
+
+![NoteFlow](/README/img/noteflow_4.png)
+
 ## Scripts
 
 ### Running Locally
