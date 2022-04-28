@@ -11,8 +11,8 @@ function NoteDate({ noteDate }: { noteDate: string }) {
   };
 
   const noteDateVariants = {
-    hidden: { y: '-3vh', opacity: 0 },
-    visible: { y: 0, opacity: 1 },
+    hidden: { y: '-10', opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
   };
 
   // Gets today's date

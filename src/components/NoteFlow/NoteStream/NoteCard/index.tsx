@@ -13,8 +13,8 @@ function NoteCard({
   deleteNote: any;
 }) {
   const noteCardVarirants = {
-    hidden: { x: '-1vw', opacity: 0 },
-    visible: { x: 0, opacity: 1 },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { delay: 0.3, duration: 0.25 } },
   };
 
   const dateTime = new Date(time);
@@ -24,6 +24,7 @@ function NoteCard({
       variants={noteCardVarirants}
       initial="hidden"
       animate="visible"
+      exit="hidden"
       className="note-card note-card__alternate"
     >
       <div className="note-card--content">

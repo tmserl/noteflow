@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import NoteCard from './NoteCard';
 import NoteDate from './NoteDate';
 
@@ -18,15 +19,17 @@ function NotesStream({
             <>
               <NoteDate key={i} noteDate={noteDate} />
               <div className="column">
-                {noteContent.map((note: any) => (
-                  <NoteCard
-                    key={note.id}
-                    id={note.id}
-                    content={note.note_content}
-                    time={note.created_at}
-                    deleteNote={deleteNote}
-                  />
-                ))}
+                <AnimatePresence>
+                  {noteContent.map((note: any) => (
+                    <NoteCard
+                      key={note.id}
+                      id={note.id}
+                      content={note.note_content}
+                      time={note.created_at}
+                      deleteNote={deleteNote}
+                    />
+                  ))}
+                </AnimatePresence>
               </div>
             </>
           ))}
