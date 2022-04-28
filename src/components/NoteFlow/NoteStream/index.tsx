@@ -16,8 +16,8 @@ function NotesStream({
       {sortedNotesData && (
         <>
           {Object.entries(sortedNotesData).map(([noteDate, noteContent], i) => (
-            <>
-              <NoteDate key={i} noteDate={noteDate} />
+            <div key={i}>
+              <NoteDate noteDate={noteDate} />
               <div className="column">
                 <AnimatePresence>
                   {noteContent.map((note: any) => (
@@ -31,7 +31,7 @@ function NotesStream({
                   ))}
                 </AnimatePresence>
               </div>
-            </>
+            </div>
           ))}
         </>
       )}
