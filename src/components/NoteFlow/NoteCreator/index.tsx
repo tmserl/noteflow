@@ -17,6 +17,7 @@ function NoteCreator({
         value={noteCreateInputValue}
       ></textarea>
       <button onClick={createNoteBtnToggler}>Create note</button>
+      <input placeholder="General" type="text" />
     </div>
   );
 }
