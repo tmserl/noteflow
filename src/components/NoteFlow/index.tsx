@@ -64,7 +64,6 @@ function NoteFlow() {
       .select('*')
       .order('created_at', { ascending: false });
     setNotesData(groupByDate(notes));
-    console.log(notes);
   }
 
   // Fetch notes and group by dates on page mount
