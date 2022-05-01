@@ -184,6 +184,13 @@ h1 a {
   resize: none;
 }
 
+.note-card input {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  outline: none;
+  visibility: none;
+}
+
 .note-card textarea::placeholder {
   color: var(--medium-gray);
 }

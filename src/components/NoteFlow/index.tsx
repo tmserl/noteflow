@@ -64,6 +64,7 @@ function NoteFlow() {
       .select('*')
       .order('created_at', { ascending: false });
     setNotesData(groupByDate(notes));
+    console.log(notes);
   }
 
   // Fetch notes and group by dates on page mount
@@ -73,9 +74,13 @@ function NoteFlow() {
 
   // Supabase: Create new note
   async function newNote() {
-    const { data, error } = await supabase
-      .from('notes')
-      .insert([{ note_content: noteCreateInputValue, user_id: user.id }]);
+    const { data, error } = await supabase.from('notes').insert([
+      {
+        note_content: noteCreateInputValue,
+        category: noteCreateCategoryValue,
+        user_id: user.id,
+      },
+    ]);
   }
 
   // Create note on button click

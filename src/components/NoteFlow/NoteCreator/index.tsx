@@ -23,7 +23,7 @@ function NoteCreator({
       <button onClick={createNoteBtnToggler}>Create note</button>
       <input
         onChange={handleNoteCreatorCategory}
-        placeholder="General"
+        placeholder="#"
         type="text"
         value={noteCreateCategoryValue}
       />
