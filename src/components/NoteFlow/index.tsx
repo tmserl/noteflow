@@ -100,7 +100,9 @@ function NoteFlow() {
     <div className="column timeline-line">
       <NoteCreator
         noteCreateInputValue={noteCreateInputValue}
+        noteCreateCategoryValue={noteCreateCategoryValue}
         handleNoteCreatorInput={handleNoteCreatorInput}
+        handleNoteCreatorCategory={handleNoteCreatorCategory}
         createNoteBtnToggler={handleCreateNoteBtn}
       />
       <NotesStream sortedNotesData={notesData} deleteNote={deleteNote} />
