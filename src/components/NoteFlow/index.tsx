@@ -20,15 +20,22 @@ function NoteFlow() {
     setCreateNoteBtnToggle(!createNoteBtnToggle);
   }
 
-  // New note text input
+  // New note
   const [noteCreateInputValue, setNoteCreatorInputValue] = useState<string>('');
+  const [noteCreateCategoryValue, setNoteCreateCategoryValue] =
+    useState<string>('');
 
   function handleNoteCreatorInput(e: any) {
     setNoteCreatorInputValue(e.target.value);
   }
 
-  function resetNoteCreatorInputField() {
+  function handleNoteCreatorCategory(e: any) {
+    setNoteCreateCategoryValue(e.target.value);
+  }
+
+  function resetNoteCreatorInputFields() {
     setNoteCreatorInputValue('');
+    setNoteCreateCategoryValue('');
   }
 
   // Notes data from Supabase
@@ -75,7 +82,7 @@ function NoteFlow() {
   useEffect(() => {
     if (user && noteCreateInputValue.length >= 1) {
       newNote();
-      resetNoteCreatorInputField();
+      resetNoteCreatorInputFields();
       const timer = setTimeout(() => {
         fetchAllNotes();
       }, 1000);
