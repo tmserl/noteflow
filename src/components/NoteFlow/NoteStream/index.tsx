@@ -15,6 +15,16 @@ function NotesStream({
 }) {
   return (
     <div className="notes-stream">
+      {noteCategories && (
+        <div className="notes-categories">
+          <ul>
+            {noteCategories.map((category: string) => (
+              <li>{category}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {sortedNotesData && (
         <>
           {Object.entries(sortedNotesData).map(([noteDate, noteContent], i) => (
