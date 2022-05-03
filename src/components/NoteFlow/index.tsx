@@ -39,7 +39,8 @@ function NoteFlow() {
   }
 
   // Notes data from Supabase
-  const [notesData, setNotesData] = useState<any>();
+  const [notesRawData, setNotesRawData] = useState<any>();
+  const [notesSortedData, setNotesSortedData] = useState<any>();
 
   const groupByDate = (notesDataToSort: any) => {
     return notesDataToSort.reduce((groups: any, note: any) => {
@@ -63,13 +64,25 @@ function NoteFlow() {
       .from('notes')
       .select('*')
       .order('created_at', { ascending: false });
-    setNotesData(groupByDate(notes));
+    setNotesRawData(notes);
+    setNotesSortedData(groupByDate(notes));
   }
 
   // Fetch notes and group by dates on page mount
   useEffect(() => {
     fetchAllNotes();
   }, []);
+
+  // Categories from data
+  const [noteCategories, setNoteCategories] = useState<any>();
+  // Makes a list of the note categories used
+  useEffect(() => {
+    if (notesRawData) {
+      const categoryArray = notesRawData.map((note: any) => note.category);
+      const uniqueCategories = [...new Set(categoryArray)];
+      setNoteCategories(uniqueCategories);
+    }
+  }, [createNoteBtnToggle]);
 
   // Supabase: Create new note
   async function newNote() {
@@ -109,7 +122,11 @@ function NoteFlow() {
         handleNoteCreatorCategory={handleNoteCreatorCategory}
         createNoteBtnToggler={handleCreateNoteBtn}
       />
-      <NotesStream sortedNotesData={notesData} deleteNote={deleteNote} />
+      <NotesStream
+        sortedNotesData={notesSortedData}
+        deleteNote={deleteNote}
+        noteCategories={noteCategories}
+      />
     </div>
   );
 }

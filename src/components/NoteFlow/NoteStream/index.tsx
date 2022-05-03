@@ -7,9 +7,11 @@ import NoteDate from './NoteDate';
 function NotesStream({
   sortedNotesData,
   deleteNote,
+  noteCategories,
 }: {
   sortedNotesData: any;
   deleteNote: any;
+  noteCategories: string[];
 }) {
   return (
     <div className="notes-stream">
