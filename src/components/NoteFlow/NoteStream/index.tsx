@@ -16,12 +16,12 @@ function NotesStream({
   return (
     <div className="notes-stream">
       {noteCategories && (
-        <div className="notes-categories">
-          <ul>
-            {noteCategories.map((category: string) => (
-              <li>{category}</li>
-            ))}
-          </ul>
+        <div className="categories">
+          {noteCategories.map((category: string) => (
+            <button value={category} name={category}>
+              {category}
+            </button>
+          ))}
         </div>
       )}
 

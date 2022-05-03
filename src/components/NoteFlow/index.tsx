@@ -79,8 +79,13 @@ function NoteFlow() {
   useEffect(() => {
     if (notesRawData) {
       const categoryArray = notesRawData.map((note: any) => note.category);
-      const uniqueCategories = [...new Set(categoryArray)];
-      setNoteCategories(uniqueCategories);
+      const categoryArrayWithNoNulls = categoryArray.filter(
+        (category: string) => {
+          return category !== '';
+        }
+      );
+      const uniqueCategories = [...new Set(categoryArrayWithNoNulls)];
+      setNoteCategories(uniqueCategories.sort());
     }
   }, [notesRawData]);
 
