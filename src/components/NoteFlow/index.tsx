@@ -82,7 +82,7 @@ function NoteFlow() {
       const uniqueCategories = [...new Set(categoryArray)];
       setNoteCategories(uniqueCategories);
     }
-  }, [createNoteBtnToggle]);
+  }, [notesRawData]);
 
   // Supabase: Create new note
   async function newNote() {
