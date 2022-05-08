@@ -6,8 +6,6 @@ import NotesStream from './NoteStream';
 // FIXME: Statically type notesData state
 // FIXME: Statically type event parameter
 // FIXME: Statically type user object
-// FIXME: Statically type realtimeSubscription state
-// TODO: Cleanup subscription after idle: supabase.removeSubscription(mySubscription)
 
 function NoteFlow() {
   const user: any = supabase.auth.user();
@@ -57,6 +55,15 @@ function NoteFlow() {
       return groups;
     }, {});
   };
+
+  // Categories Filter
+  const [categoryToggles, setCategoryToggles] = useState<string[]>([]);
+
+  function handleCategoryToggles(e: any) {
+    setCategoryToggles([...categoryToggles, e.target.value]);
+  }
+
+  console.log(categoryToggles);
 
   // Supabase: Fetch all notes
   async function fetchAllNotes() {
@@ -131,6 +138,7 @@ function NoteFlow() {
         sortedNotesData={notesSortedData}
         deleteNote={deleteNote}
         noteCategories={noteCategories}
+        handleCategoryToggles={handleCategoryToggles}
       />
     </div>
   );

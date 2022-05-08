@@ -8,17 +8,23 @@ function NotesStream({
   sortedNotesData,
   deleteNote,
   noteCategories,
+  handleCategoryToggles,
 }: {
   sortedNotesData: any;
   deleteNote: any;
   noteCategories: string[];
+  handleCategoryToggles: any;
 }) {
   return (
     <div className="notes-stream">
       {noteCategories && (
         <div className="categories">
           {noteCategories.map((category: string) => (
-            <button value={category} name={category}>
+            <button
+              onClick={handleCategoryToggles}
+              value={category}
+              name={category}
+            >
               {category}
             </button>
           ))}
