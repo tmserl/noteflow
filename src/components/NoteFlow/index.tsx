@@ -70,6 +70,7 @@ function NoteFlow() {
     } else {
       setCategoryToggles([...categoryToggles, e.target.value]);
     }
+    e.target.classList.toggle('categories--btn__toggled');
   }
 
   // Supabase: Fetch all notes

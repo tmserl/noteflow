@@ -159,6 +159,10 @@ h1 a {
   background-color: var(--button-color);
 }
 
+.categories .categories--btn__toggled {
+  background-color: var(--button-color);
+}
+
 /* 5. CONTENT */
 
 .timeline-line {
