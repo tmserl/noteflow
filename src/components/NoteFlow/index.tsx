@@ -60,10 +60,17 @@ function NoteFlow() {
   const [categoryToggles, setCategoryToggles] = useState<string[]>([]);
 
   function handleCategoryToggles(e: any) {
-    setCategoryToggles([...categoryToggles, e.target.value]);
+    //Adds category item to array or removes it if it's already present
+    if (categoryToggles.includes(e.target.value) === true) {
+      const categoryId = categoryToggles.indexOf(e.target.value);
+      setCategoryToggles([
+        ...categoryToggles.slice(0, categoryId),
+        ...categoryToggles.slice(categoryId + 1),
+      ]);
+    } else {
+      setCategoryToggles([...categoryToggles, e.target.value]);
+    }
   }
-
-  console.log(categoryToggles);
 
   // Supabase: Fetch all notes
   async function fetchAllNotes() {
