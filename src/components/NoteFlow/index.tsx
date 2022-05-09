@@ -73,7 +73,7 @@ function NoteFlow() {
     e.target.classList.toggle('categories--btn__toggled');
   }
 
-  // Supabase: Fetch all notes
+  // Supabase: Fetch notes
   async function fetchAllNotes() {
     const { data: notes } = await supabase
       .from('notes')
