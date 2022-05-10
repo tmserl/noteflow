@@ -257,6 +257,17 @@ h1 a {
   background-color: var(--almost-white);
 }
 
+.note-card--category {
+  position: absolute;
+  right: 10px;
+  top: -5px;
+}
+
+.note-card--category p {
+  color: var(--medium-gray);
+  font-size: 1rem;
+}
+
 .note-card--time {
   position: absolute;
   width: 70px;
