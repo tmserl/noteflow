@@ -177,6 +177,10 @@ h1 a {
   background-color: var(--medium-gray);
 }
 
+.categories button:active {
+  background-color: #c1c1c1;
+}
+
 /* 5. CONTENT */
 
 .timeline-line {
