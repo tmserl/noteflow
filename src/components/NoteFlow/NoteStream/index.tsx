@@ -43,6 +43,7 @@ function NotesStream({
                       key={note.id}
                       id={note.id}
                       content={note.note_content}
+                      category={note.category}
                       time={note.created_at}
                       deleteNote={deleteNote}
                     />
