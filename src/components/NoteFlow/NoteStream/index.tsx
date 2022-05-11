@@ -1,4 +1,5 @@
 import { AnimatePresence } from 'framer-motion';
+import { chownSync } from 'fs';
 import NoteCard from './NoteCard';
 import NoteDate from './NoteDate';
 
@@ -8,11 +9,13 @@ function NotesStream({
   sortedNotesData,
   deleteNote,
   noteCategories,
+  categoryToggles,
   handleCategoryToggles,
 }: {
   sortedNotesData: any;
   deleteNote: any;
   noteCategories: string[];
+  categoryToggles: string[];
   handleCategoryToggles: any;
 }) {
   return (
@@ -30,7 +33,6 @@ function NotesStream({
           ))}
         </div>
       )}
-
       {sortedNotesData && (
         <>
           {Object.entries(sortedNotesData).map(([noteDate, noteContent], i) => (
@@ -38,16 +40,20 @@ function NotesStream({
               <NoteDate noteDate={noteDate} />
               <div className="column">
                 <AnimatePresence>
-                  {noteContent.map((note: any) => (
-                    <NoteCard
-                      key={note.id}
-                      id={note.id}
-                      content={note.note_content}
-                      category={note.category}
-                      time={note.created_at}
-                      deleteNote={deleteNote}
-                    />
-                  ))}
+                  {noteContent
+                    .filter((item) => categoryToggles.includes(item.category))
+                    .map((note: any) => (
+                      <>
+                        <NoteCard
+                          key={note.id}
+                          id={note.id}
+                          content={note.note_content}
+                          category={note.category}
+                          time={note.created_at}
+                          deleteNote={deleteNote}
+                        />
+                      </>
+                    ))}
                 </AnimatePresence>
               </div>
             </div>

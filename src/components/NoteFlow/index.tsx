@@ -78,6 +78,7 @@ function NoteFlow() {
     const { data: notes } = await supabase
       .from('notes')
       .select('*')
+      // .match({ category: 'Project' })
       .order('created_at', { ascending: false });
     setNotesRawData(notes);
     setNotesSortedData(groupByDate(notes));
@@ -146,6 +147,7 @@ function NoteFlow() {
         sortedNotesData={notesSortedData}
         deleteNote={deleteNote}
         noteCategories={noteCategories}
+        categoryToggles={categoryToggles}
         handleCategoryToggles={handleCategoryToggles}
       />
     </div>
