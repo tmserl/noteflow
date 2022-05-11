@@ -1,5 +1,5 @@
+import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { chownSync } from 'fs';
 import NoteCard from './NoteCard';
 import NoteDate from './NoteDate';
 
@@ -18,6 +18,25 @@ function NotesStream({
   categoryToggles: string[];
   handleCategoryToggles: any;
 }) {
+  // Filters sortedNotesData depending on what Categories are picked
+  const [categoryFilteredNotes, setCategoryFilteredNotes] = useState<any>({});
+  useEffect(() => {
+    if (sortedNotesData) {
+      setCategoryFilteredNotes(
+        Object.fromEntries(
+          Object.entries(sortedNotesData)
+            .map(([key, value]: [key: any, value: any]) => [
+              key,
+              value.filter(({ category }: { category: any }) =>
+                categoryToggles.includes(category)
+              ),
+            ])
+            .filter(([, value]) => value.length)
+        )
+      );
+    }
+  }, [categoryToggles]);
+
   return (
     <div className="notes-stream">
       {noteCategories && (
@@ -33,9 +52,9 @@ function NotesStream({
           ))}
         </div>
       )}
-      {sortedNotesData && (
+      {categoryFilteredNotes && (
         <>
-          {Object.entries(sortedNotesData).map(
+          {Object.entries(categoryFilteredNotes).map(
             ([noteDate, noteContent]: [noteDate: any, noteContent: any], i) => (
               <div key={i}>
                 <NoteDate noteDate={noteDate} />
