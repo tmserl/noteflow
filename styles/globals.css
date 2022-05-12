@@ -23,11 +23,13 @@
   --font-stack: 'Source Sans Pro', Arial, Helvetica Neue, Helvetica, sans-serif;
   --font-size-regular: 1.3rem;
   --font-weight-semi-bold: 600;
-  --light-gray: #f3f3f3;
-  --medium-gray: #d8d8d8;
   --almost-white: #fafafa;
-  --almost-black: #343434;
+  --light-gray: #f3f3f3;
   --button-color: #e1e2e4;
+  --medium-gray: #d8d8d8;
+  --medium-dark-gray: #969696;
+  --dark-gray: #5e5e5e;
+  --almost-black: #343434;
   --accent-color: #5483e9;
   --accent-color-lighter: #bfd1f8;
 }
@@ -150,6 +152,7 @@ h1 a {
 }
 
 .categories button {
+  color: var(--medium-dark-gray);
   background-color: transparent;
   cursor: pointer;
   width: 70px;
@@ -173,9 +176,13 @@ h1 a {
   background-color: var(--button-color);
 }
 
-.categories button:hover,
-.categories .categories--btn__toggled {
+.categories button:hover {
   background-color: var(--medium-gray);
+}
+
+.categories .categories--btn__toggled {
+  color: var(--almost-black);
+  font-weight: 800;
 }
 
 .categories button:active {
@@ -264,7 +271,7 @@ h1 a {
 }
 
 .note-card--category p {
-  color: var(--medium-gray);
+  color: var(--medium-dark-gray);
   font-size: 1rem;
 }
 
@@ -294,7 +301,12 @@ h1 a {
   position: absolute;
   bottom: -20px;
   right: 0;
-  color: var(--medium-gray);
+  color: var(--medium-dark-gray);
+  transition: color 0.25s;
+}
+
+.note-card--delete:hover {
+  color: var(--dark-gray);
 }
 
 .note-card:hover > .note-card--delete {
