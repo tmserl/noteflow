@@ -18,22 +18,26 @@ function NotesStream({
   categoryToggles: string[];
   handleCategoryToggles: any;
 }) {
+  console.log(categoryToggles);
   // Filters sortedNotesData depending on what Categories are picked
   const [categoryFilteredNotes, setCategoryFilteredNotes] = useState<any>({});
   useEffect(() => {
     if (sortedNotesData) {
-      setCategoryFilteredNotes(
-        Object.fromEntries(
-          Object.entries(sortedNotesData)
-            .map(([key, value]: [key: any, value: any]) => [
-              key,
-              value.filter(({ category }: { category: any }) =>
-                categoryToggles.includes(category)
-              ),
-            ])
-            .filter(([, value]) => value.length)
-        )
-      );
+      if (categoryToggles.length === 0) {
+      } else {
+        setCategoryFilteredNotes(
+          Object.fromEntries(
+            Object.entries(sortedNotesData)
+              .map(([key, value]: [key: any, value: any]) => [
+                key,
+                value.filter(({ category }: { category: any }) =>
+                  categoryToggles.includes(category)
+                ),
+              ])
+              .filter(([, value]) => value.length)
+          )
+        );
+      }
     }
   }, [categoryToggles]);
 
