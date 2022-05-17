@@ -23,21 +23,18 @@ function NotesStream({
   const [categoryFilteredNotes, setCategoryFilteredNotes] = useState<any>({});
   useEffect(() => {
     if (sortedNotesData) {
-      if (categoryToggles.length === 0) {
-      } else {
-        setCategoryFilteredNotes(
-          Object.fromEntries(
-            Object.entries(sortedNotesData)
-              .map(([key, value]: [key: any, value: any]) => [
-                key,
-                value.filter(({ category }: { category: any }) =>
-                  categoryToggles.includes(category)
-                ),
-              ])
-              .filter(([, value]) => value.length)
-          )
-        );
-      }
+      setCategoryFilteredNotes(
+        Object.fromEntries(
+          Object.entries(sortedNotesData)
+            .map(([key, value]: [key: any, value: any]) => [
+              key,
+              value.filter(({ category }: { category: any }) =>
+                categoryToggles.includes(category)
+              ),
+            ])
+            .filter(([, value]) => value.length)
+        )
+      );
     }
   }, [categoryToggles]);
 
