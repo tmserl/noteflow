@@ -50,7 +50,7 @@ function NotesStream({
         );
       }
     }
-  }, [categoryToggles]);
+  }, [categoryToggles, sortedNotesData]);
 
   return (
     <div className="notes-stream">
