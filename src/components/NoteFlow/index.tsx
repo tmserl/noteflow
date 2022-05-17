@@ -107,13 +107,25 @@ function NoteFlow() {
 
   // Supabase: Create new note
   async function newNote() {
-    const { data, error } = await supabase.from('notes').insert([
-      {
-        note_content: noteCreateInputValue,
-        category: noteCreateCategoryValue,
-        user_id: user.id,
-      },
-    ]);
+    // If a category has been inserted, add it to the note data
+    if (noteCreateCategoryValue) {
+      const { data, error } = await supabase.from('notes').insert([
+        {
+          note_content: noteCreateInputValue,
+          category: noteCreateCategoryValue,
+          user_id: user.id,
+        },
+      ]);
+      // If no category has been inserted, default the value to 'General'
+    } else {
+      const { data, error } = await supabase.from('notes').insert([
+        {
+          note_content: noteCreateInputValue,
+          category: 'General',
+          user_id: user.id,
+        },
+      ]);
+    }
   }
 
   // Create note on button click
