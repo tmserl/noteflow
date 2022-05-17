@@ -56,6 +56,22 @@ function NoteFlow() {
     }, {});
   };
 
+  // Categories from data
+  const [noteCategories, setNoteCategories] = useState<any>();
+  // Makes a list of the note categories used
+  useEffect(() => {
+    if (notesRawData) {
+      const categoryArray = notesRawData.map((note: any) => note.category);
+      const categoryArrayWithNoNulls = categoryArray.filter(
+        (category: string) => {
+          return category !== '';
+        }
+      );
+      const uniqueCategories = [...new Set(categoryArrayWithNoNulls)];
+      setNoteCategories(uniqueCategories.sort());
+    }
+  }, [notesRawData]);
+
   // Categories Filter
   const [categoryToggles, setCategoryToggles] = useState<string[]>([]);
 
@@ -88,22 +104,6 @@ function NoteFlow() {
   useEffect(() => {
     fetchAllNotes();
   }, []);
-
-  // Categories from data
-  const [noteCategories, setNoteCategories] = useState<any>();
-  // Makes a list of the note categories used
-  useEffect(() => {
-    if (notesRawData) {
-      const categoryArray = notesRawData.map((note: any) => note.category);
-      const categoryArrayWithNoNulls = categoryArray.filter(
-        (category: string) => {
-          return category !== '';
-        }
-      );
-      const uniqueCategories = [...new Set(categoryArrayWithNoNulls)];
-      setNoteCategories(uniqueCategories.sort());
-    }
-  }, [notesRawData]);
 
   // Supabase: Create new note
   async function newNote() {

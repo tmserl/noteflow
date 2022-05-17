@@ -18,23 +18,37 @@ function NotesStream({
   categoryToggles: string[];
   handleCategoryToggles: any;
 }) {
-  console.log(categoryToggles);
   // Filters sortedNotesData depending on what Categories are picked
   const [categoryFilteredNotes, setCategoryFilteredNotes] = useState<any>({});
   useEffect(() => {
-    if (sortedNotesData) {
-      setCategoryFilteredNotes(
-        Object.fromEntries(
-          Object.entries(sortedNotesData)
-            .map(([key, value]: [key: any, value: any]) => [
-              key,
-              value.filter(({ category }: { category: any }) =>
-                categoryToggles.includes(category)
-              ),
-            ])
-            .filter(([, value]) => value.length)
-        )
-      );
+    if (sortedNotesData && noteCategories) {
+      if (categoryToggles.length === 0) {
+        setCategoryFilteredNotes(
+          Object.fromEntries(
+            Object.entries(sortedNotesData)
+              .map(([key, value]: [key: any, value: any]) => [
+                key,
+                value.filter(({ category }: { category: any }) =>
+                  noteCategories.includes(category)
+                ),
+              ])
+              .filter(([, value]) => value.length)
+          )
+        );
+      } else {
+        setCategoryFilteredNotes(
+          Object.fromEntries(
+            Object.entries(sortedNotesData)
+              .map(([key, value]: [key: any, value: any]) => [
+                key,
+                value.filter(({ category }: { category: any }) =>
+                  categoryToggles.includes(category)
+                ),
+              ])
+              .filter(([, value]) => value.length)
+          )
+        );
+      }
     }
   }, [categoryToggles]);
 
@@ -61,22 +75,39 @@ function NotesStream({
                 <NoteDate noteDate={noteDate} />
                 <div className="column">
                   <AnimatePresence>
-                    {noteContent
-                      .filter((item: any) =>
-                        categoryToggles.includes(item.category)
-                      )
-                      .map((note: any) => (
-                        <>
-                          <NoteCard
-                            key={note.id}
-                            id={note.id}
-                            content={note.note_content}
-                            category={note.category}
-                            time={note.created_at}
-                            deleteNote={deleteNote}
-                          />
-                        </>
-                      ))}
+                    {categoryToggles.length === 0
+                      ? noteContent
+                          .filter((item: any) =>
+                            noteCategories.includes(item.category)
+                          )
+                          .map((note: any) => (
+                            <>
+                              <NoteCard
+                                key={note.id}
+                                id={note.id}
+                                content={note.note_content}
+                                category={note.category}
+                                time={note.created_at}
+                                deleteNote={deleteNote}
+                              />
+                            </>
+                          ))
+                      : noteContent
+                          .filter((item: any) =>
+                            categoryToggles.includes(item.category)
+                          )
+                          .map((note: any) => (
+                            <>
+                              <NoteCard
+                                key={note.id}
+                                id={note.id}
+                                content={note.note_content}
+                                category={note.category}
+                                time={note.created_at}
+                                deleteNote={deleteNote}
+                              />
+                            </>
+                          ))}
                   </AnimatePresence>
                 </div>
               </div>
