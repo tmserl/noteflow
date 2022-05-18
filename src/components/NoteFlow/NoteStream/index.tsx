@@ -58,6 +58,7 @@ function NotesStream({
         <div className="categories">
           {noteCategories.map((category: string) => (
             <button
+              key={category}
               onClick={handleCategoryToggles}
               value={category}
               name={category}
@@ -81,32 +82,28 @@ function NotesStream({
                             noteCategories.includes(item.category)
                           )
                           .map((note: any) => (
-                            <>
-                              <NoteCard
-                                key={note.id}
-                                id={note.id}
-                                content={note.note_content}
-                                category={note.category}
-                                time={note.created_at}
-                                deleteNote={deleteNote}
-                              />
-                            </>
+                            <NoteCard
+                              key={note.id}
+                              id={note.id}
+                              content={note.note_content}
+                              category={note.category}
+                              time={note.created_at}
+                              deleteNote={deleteNote}
+                            />
                           ))
                       : noteContent
                           .filter((item: any) =>
                             categoryToggles.includes(item.category)
                           )
                           .map((note: any) => (
-                            <>
-                              <NoteCard
-                                key={note.id}
-                                id={note.id}
-                                content={note.note_content}
-                                category={note.category}
-                                time={note.created_at}
-                                deleteNote={deleteNote}
-                              />
-                            </>
+                            <NoteCard
+                              key={note.id}
+                              id={note.id}
+                              content={note.note_content}
+                              category={note.category}
+                              time={note.created_at}
+                              deleteNote={deleteNote}
+                            />
                           ))}
                   </AnimatePresence>
                 </div>
