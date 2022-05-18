@@ -23,11 +23,13 @@
   --font-stack: 'Source Sans Pro', Arial, Helvetica Neue, Helvetica, sans-serif;
   --font-size-regular: 1.3rem;
   --font-weight-semi-bold: 600;
-  --light-gray: #f3f3f3;
-  --medium-gray: #d8d8d8;
   --almost-white: #fafafa;
-  --almost-black: #343434;
+  --light-gray: #f3f3f3;
   --button-color: #e1e2e4;
+  --medium-gray: #d8d8d8;
+  --medium-dark-gray: #969696;
+  --dark-gray: #5e5e5e;
+  --almost-black: #343434;
   --accent-color: #5483e9;
   --accent-color-lighter: #bfd1f8;
 }
@@ -73,6 +75,7 @@ h1 a {
 
 .header {
   display: flex;
+  padding: 0 5px 0 5px;
   justify-content: space-between;
   align-items: center;
 }
@@ -139,6 +142,54 @@ h1 a {
   font-weight: 900;
 }
 
+.categories {
+  position: absolute;
+  text-align: center;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 5px;
+  transition: background-color 0.25s;
+}
+
+.categories button {
+  color: var(--medium-dark-gray);
+  background-color: transparent;
+  cursor: pointer;
+  width: 70px;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 8px 0;
+  margin: 0 5px;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.25s;
+}
+
+.categories button:first-of-type,
+.categories button:last-of-type {
+  margin: 0;
+}
+
+.categories:hover {
+  background-color: var(--button-color);
+}
+
+.categories button:hover {
+  background-color: var(--medium-gray);
+}
+
+.categories .categories--btn__toggled {
+  color: var(--almost-black);
+  font-weight: 800;
+}
+
+.categories button:active {
+  background-color: #c1c1c1;
+}
+
 /* 5. CONTENT */
 
 .timeline-line {
@@ -178,10 +229,17 @@ h1 a {
   font-weight: var(--font-weight-semi-bold);
   color: var(--almost-black);
   width: 390px;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   border: none;
   outline: none;
   resize: none;
+}
+
+.note-card input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  visibility: none;
 }
 
 .note-card textarea::placeholder {
@@ -205,6 +263,17 @@ h1 a {
 
 .note-card button:hover {
   background-color: var(--almost-white);
+}
+
+.note-card--category {
+  position: absolute;
+  right: 10px;
+  top: -5px;
+}
+
+.note-card--category p {
+  color: var(--medium-dark-gray);
+  font-size: 1rem;
 }
 
 .note-card--time {
@@ -233,7 +302,12 @@ h1 a {
   position: absolute;
   bottom: -20px;
   right: 0;
-  color: var(--medium-gray);
+  color: var(--medium-dark-gray);
+  transition: color 0.25s;
+}
+
+.note-card--delete:hover {
+  color: var(--dark-gray);
 }
 
 .note-card:hover > .note-card--delete {
@@ -309,6 +383,13 @@ footer {
 
 /* 9. METIA QUERIES */
 @media screen and (max-width: 1030px) {
+  .noteflow {
+    margin-top: 40px;
+  }
+
+  .categories {
+    top: 60px;
+  }
   .note-card__alternate:nth-child(odd) {
     align-self: center;
   }

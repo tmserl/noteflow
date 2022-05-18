@@ -4,11 +4,13 @@ import { motion } from 'framer-motion';
 function NoteCard({
   id,
   content,
+  category,
   time,
   deleteNote,
 }: {
   id: number;
   content: string;
+  category: string;
   time: string;
   deleteNote: any;
 }) {
@@ -29,6 +31,9 @@ function NoteCard({
     >
       <div className="note-card--content">
         <p>{content}</p>
+      </div>
+      <div className="note-card--category">
+        <p>{category}</p>
       </div>
       <div className="note-card--time note-card--time__alternate">
         <span>

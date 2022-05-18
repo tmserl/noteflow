@@ -3,11 +3,15 @@
 function NoteCreator({
   createNoteBtnToggler,
   handleNoteCreatorInput,
+  handleNoteCreatorCategory,
   noteCreateInputValue,
+  noteCreateCategoryValue,
 }: {
   createNoteBtnToggler: React.MouseEventHandler;
   handleNoteCreatorInput: any;
+  handleNoteCreatorCategory: any;
   noteCreateInputValue: string;
+  noteCreateCategoryValue: string;
 }) {
   return (
     <div className="note-card note-card__center">
@@ -17,6 +21,12 @@ function NoteCreator({
         value={noteCreateInputValue}
       ></textarea>
       <button onClick={createNoteBtnToggler}>Create note</button>
+      <input
+        onChange={handleNoteCreatorCategory}
+        placeholder="#"
+        type="text"
+        value={noteCreateCategoryValue}
+      />
     </div>
   );
 }
