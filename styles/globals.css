@@ -75,6 +75,7 @@ h1 a {
 
 .header {
   display: flex;
+  padding: 0 5px 0 5px;
   justify-content: space-between;
   align-items: center;
 }
@@ -382,6 +383,13 @@ footer {
 
 /* 9. METIA QUERIES */
 @media screen and (max-width: 1030px) {
+  .noteflow {
+    margin-top: 40px;
+  }
+
+  .categories {
+    top: 60px;
+  }
   .note-card__alternate:nth-child(odd) {
     align-self: center;
   }
