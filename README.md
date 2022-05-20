@@ -31,6 +31,10 @@ NoteFlow shows your notes in a nice, clean, chronological order. Displayed on a 
 
 ![NoteFlow](/README/img/noteflow_4.png)
 
+### Categories / Tags in NoteFlow
+
+![NoteFlow](/README/img/noteflow_5.png)
+
 ## Scripts
 
 ### Running Locally
