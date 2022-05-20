@@ -72,7 +72,10 @@ function NotesStream({
         ? sortedNotesData && (
             <>
               {Object.entries(sortedNotesData).map(
-                ([noteDate, noteContent], i) => (
+                (
+                  [noteDate, noteContent]: [noteDate: any, noteContent: any],
+                  i
+                ) => (
                   <div key={i}>
                     <NoteDate noteDate={noteDate} />
                     <div className="column">
