@@ -22,20 +22,19 @@ function NotesStream({
   const [categoryFilteredNotes, setCategoryFilteredNotes] = useState<any>({});
   useEffect(() => {
     if (sortedNotesData && noteCategories) {
-      if (categoryToggles.length === 0) {
-        setCategoryFilteredNotes(
-          Object.fromEntries(
-            Object.entries(sortedNotesData)
-              .map(([key, value]: [key: any, value: any]) => [
-                key,
-                value.filter(({ category }: { category: any }) =>
-                  noteCategories.includes(category)
-                ),
-              ])
-              .filter(([, value]) => value.length)
-          )
-        );
-      } else {
+      setCategoryFilteredNotes(
+        Object.fromEntries(
+          Object.entries(sortedNotesData)
+            .map(([key, value]: [key: any, value: any]) => [
+              key,
+              value.filter(({ category }: { category: any }) =>
+                noteCategories.includes(category)
+              ),
+            ])
+            .filter(([, value]) => value.length)
+        )
+      );
+      if (categoryToggles.length >= 1) {
         setCategoryFilteredNotes(
           Object.fromEntries(
             Object.entries(sortedNotesData)
@@ -77,20 +76,16 @@ function NotesStream({
                 <div className="column">
                   <AnimatePresence>
                     {categoryToggles.length === 0
-                      ? noteContent
-                          .filter((item: any) =>
-                            noteCategories.includes(item.category)
-                          )
-                          .map((note: any) => (
-                            <NoteCard
-                              key={note.id}
-                              id={note.id}
-                              content={note.note_content}
-                              category={note.category}
-                              time={note.created_at}
-                              deleteNote={deleteNote}
-                            />
-                          ))
+                      ? noteContent.map((note: any) => (
+                          <NoteCard
+                            key={note.id}
+                            id={note.id}
+                            content={note.note_content}
+                            category={note.category}
+                            time={note.created_at}
+                            deleteNote={deleteNote}
+                          />
+                        ))
                       : noteContent
                           .filter((item: any) =>
                             categoryToggles.includes(item.category)
