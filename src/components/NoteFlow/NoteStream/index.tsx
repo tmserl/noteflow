@@ -4,6 +4,7 @@ import NoteCard from './NoteCard';
 import NoteDate from './NoteDate';
 
 // FIXME: Statically type props
+// TODO: Extract conditional logic to individual components
 
 function NotesStream({
   sortedNotesData,
@@ -67,16 +68,16 @@ function NotesStream({
           ))}
         </div>
       )}
-      {categoryFilteredNotes && (
-        <>
-          {Object.entries(categoryFilteredNotes).map(
-            ([noteDate, noteContent]: [noteDate: any, noteContent: any], i) => (
-              <div key={i}>
-                <NoteDate noteDate={noteDate} />
-                <div className="column">
-                  <AnimatePresence>
-                    {categoryToggles.length === 0
-                      ? noteContent.map((note: any) => (
+      {categoryToggles.length === 0
+        ? sortedNotesData && (
+            <>
+              {Object.entries(sortedNotesData).map(
+                ([noteDate, noteContent], i) => (
+                  <div key={i}>
+                    <NoteDate noteDate={noteDate} />
+                    <div className="column">
+                      <AnimatePresence>
+                        {noteContent.map((note: any) => (
                           <NoteCard
                             key={note.id}
                             id={note.id}
@@ -85,8 +86,26 @@ function NotesStream({
                             time={note.created_at}
                             deleteNote={deleteNote}
                           />
-                        ))
-                      : noteContent
+                        ))}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                )
+              )}
+            </>
+          )
+        : categoryFilteredNotes && (
+            <>
+              {Object.entries(categoryFilteredNotes).map(
+                (
+                  [noteDate, noteContent]: [noteDate: any, noteContent: any],
+                  i
+                ) => (
+                  <div key={i}>
+                    <NoteDate noteDate={noteDate} />
+                    <div className="column">
+                      <AnimatePresence>
+                        {noteContent
                           .filter((item: any) =>
                             categoryToggles.includes(item.category)
                           )
@@ -100,13 +119,13 @@ function NotesStream({
                               deleteNote={deleteNote}
                             />
                           ))}
-                  </AnimatePresence>
-                </div>
-              </div>
-            )
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                )
+              )}
+            </>
           )}
-        </>
-      )}
     </div>
   );
 }
