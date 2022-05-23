@@ -320,6 +320,12 @@ h1 a {
   transform: translateX(-100%);
 }
 
+.new-category-input {
+}
+
+.category-selection {
+}
+
 /* 6. CSS FLEXBOX */
 
 .column {

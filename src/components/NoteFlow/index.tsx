@@ -154,6 +154,8 @@ function NoteFlow() {
         handleNoteCreatorInput={handleNoteCreatorInput}
         handleNoteCreatorCategory={handleNoteCreatorCategory}
         createNoteBtnToggler={handleCreateNoteBtn}
+        noteCategories={noteCategories}
+        setNoteCategories={setNoteCategories}
       />
       <NotesStream
         sortedNotesData={notesSortedData}
