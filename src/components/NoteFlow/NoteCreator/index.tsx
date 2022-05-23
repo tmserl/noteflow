@@ -1,4 +1,5 @@
 // FIXME: Statically type handleNoteCreatorInput prop
+// TODO: Add function that allows a user to pick a category they want to add to their new note
 
 function NoteCreator({
   createNoteBtnToggler,
@@ -35,7 +36,7 @@ function NoteCreator({
       <div className="category-selection">
         {noteCategories &&
           noteCategories.map((category: string) => (
-            <button className="testing" value={category} name={category}>
+            <button value={category} name={category}>
               {category}
             </button>
           ))}
