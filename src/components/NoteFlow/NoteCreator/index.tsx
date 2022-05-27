@@ -36,7 +36,7 @@ function NoteCreator({
       <div className="category-selection">
         {noteCategories &&
           noteCategories.map((category: string) => (
-            <button value={category} name={category}>
+            <button key={category} value={category} name={category}>
               {category}
             </button>
           ))}
