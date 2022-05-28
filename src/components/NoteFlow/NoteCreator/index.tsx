@@ -18,7 +18,6 @@ function NoteCreator({
   noteCreateCategoryValue: string;
   noteCategories: any;
 }) {
-  console.log(noteCreateCategoryValue);
   return (
     <div className="note-card note-card__center">
       <textarea
