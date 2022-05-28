@@ -31,6 +31,10 @@ function NoteFlow() {
     setNoteCreateCategoryValue(e.target.value);
   }
 
+  function handleNewCategorySelection(e: any) {
+    setNoteCreateCategoryValue(e.target.value);
+  }
+
   function resetNoteCreatorInputFields() {
     setNoteCreatorInputValue('');
     setNoteCreateCategoryValue('');
@@ -153,9 +157,9 @@ function NoteFlow() {
         noteCreateCategoryValue={noteCreateCategoryValue}
         handleNoteCreatorInput={handleNoteCreatorInput}
         handleNoteCreatorCategory={handleNoteCreatorCategory}
+        handleNewCategorySelection={handleNewCategorySelection}
         createNoteBtnToggler={handleCreateNoteBtn}
         noteCategories={noteCategories}
-        setNoteCategories={setNoteCategories}
       />
       <NotesStream
         sortedNotesData={notesSortedData}
