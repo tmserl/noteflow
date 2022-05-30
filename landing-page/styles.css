@@ -3,4 +3,18 @@
 
 body {
   font-family: 'Inter', Arial, Helvetica, sans-serif;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 920px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+h1 {
+  font-size: 3.25rem;
+}
+
+.hero-paragraph {
+  font-size: 1.15rem;
+  font-weight: 400;
 }
