@@ -3,6 +3,24 @@
 
 body {
   font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.background {
+  background: linear-gradient(
+      319deg,
+      rgb(255 51 98 / 8%) 10%,
+      rgb(255 235 0 / 0%) 50%
+    ),
+    linear-gradient(20deg, rgb(0 119 255 / 15%) 5%, rgba(0 119 255 / 0%) 40%);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.wrapper {
   margin-right: auto;
   margin-left: auto;
   max-width: 920px;
@@ -11,10 +29,14 @@ body {
 }
 
 h1 {
-  font-size: 3.25rem;
+  font-size: 4.5rem;
+}
+
+h1 span {
+  margin-left: 100px;
 }
 
 .hero-paragraph {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   font-weight: 400;
 }
