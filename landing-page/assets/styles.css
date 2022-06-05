@@ -89,6 +89,15 @@ button:hover {
   z-index: -1;
 }
 
+.card {
+}
+
+video {
+  display: block;
+  width: auto;
+  height: 175px;
+}
+
 /* Footer */
 footer {
   padding-top: 40px;
