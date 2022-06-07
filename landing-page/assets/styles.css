@@ -89,13 +89,38 @@ button:hover {
   z-index: -1;
 }
 
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left {
+  align-self: flex-start;
+}
+
+.right {
+  align-self: flex-end;
+}
+
 .card {
+  padding: 10px;
+  background-color: #dadada;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.caption {
+  font-weight: 500;
 }
 
 video {
   display: block;
   width: auto;
-  height: 175px;
+  height: 180px;
+  border-radius: 10px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px,
+    rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
 }
 
 /* Footer */
