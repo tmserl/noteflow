@@ -41,7 +41,7 @@
         Craft your own timeline. Write and view your notes in the most natural
         format.
       </p>
-      <button class="early-access">Get early access</button>
+      <button class="early-access"><a href="#early-access">Get early access</a></button>
       <div class="timeline-line">
         <div class="flex">
           <div class="card left">
@@ -71,9 +71,10 @@
         </div>
       </div>
       <div>
-        <form>
-          <input placeholder="Enter your email" />
-          <button>Join the waitlist</button>
+        <form id="early-access" name="early-access" action="/landing-page/success.html" method="POST"
+          data-netlify="true">
+          <input placeholder="Enter your email" name="email" />
+          <button type="submit">Join the waitlist</button>
         </form>
       </div>
       </main>
