@@ -218,9 +218,10 @@ h1 a {
 }
 
 .note-card p {
-  padding: 1rem 1rem 2rem;
+  padding: 12px 10px 20px;
   font-size: var(--font-size-regular);
   font-weight: var(--font-weight-semi-bold);
+  line-height: 15px;
 }
 
 .note-card textarea {
@@ -269,7 +270,7 @@ h1 a {
 .note-card--category {
   position: absolute;
   right: 10px;
-  top: -5px;
+  top: -12px;
 }
 
 .note-card--category p {

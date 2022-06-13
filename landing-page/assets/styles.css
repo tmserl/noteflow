@@ -1,0 +1,140 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.background {
+  background: linear-gradient(
+      319deg,
+      rgb(255 51 98 / 8%) 10%,
+      rgb(255 235 0 / 0%) 50%
+    ),
+    linear-gradient(20deg, rgb(84 131 232 / 15%) 5%, rgba(84 131 232 / 0%) 40%);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: -1;
+}
+
+.wrapper {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 920px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+/* Header */
+h1 {
+  margin-top: 75px;
+  font-size: 4.75rem;
+  font-weight: 700;
+}
+
+h1 span {
+  margin-left: 100px;
+}
+
+.hero-paragraph {
+  margin-bottom: 75px;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+/* Main */
+input {
+  display: block;
+  margin: 10px 0 15px 0;
+  font-size: 2.25rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  visibility: none;
+}
+
+button {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #343434;
+  background-color: #eaeaea;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 25px;
+  text-align: center;
+  cursor: pointer;
+}
+
+button a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+.early-access {
+  margin-bottom: 100px;
+}
+
+.timeline-line {
+  background-image: linear-gradient(#d8d8d8 95%, #f3f3f3 100%);
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  z-index: -1;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.left {
+  align-self: flex-start;
+}
+
+.right {
+  align-self: flex-end;
+}
+
+.card {
+  padding: 10px;
+  background-color: #dadada;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.caption {
+  font-weight: 500;
+}
+
+video {
+  display: block;
+  width: auto;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px,
+    rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+}
+
+/* Footer */
+footer {
+  padding-top: 40px;
+  border-top: 1px solid #dceaf7;
+}
